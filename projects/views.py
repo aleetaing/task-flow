@@ -3,14 +3,14 @@ from projects.models import Project
 from django.contrib.auth.decorators import login_required
 from projects.forms import ProjectForm
 
+
 # Create your views here.
-@login_required(redirect_field_name = "login")
+@login_required(redirect_field_name="login")
 def list_projects(request):
-    projects = Project.objects.filter(owner = request.user)
-    context = {
-        "projects": projects
-    }
+    projects = Project.objects.filter(owner=request.user)
+    context = {"projects": projects}
     return render(request, "projects/list.html", context)
+
 
 @login_required
 def show_project(request, id):
@@ -19,6 +19,7 @@ def show_project(request, id):
         "project": project,
     }
     return render(request, "projects/detail.html", context)
+
 
 @login_required
 def create_project(request):
